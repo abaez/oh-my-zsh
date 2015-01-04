@@ -26,22 +26,18 @@ function in_hg() {
 }
 
 function hg_get_branch_name() {
-  if [ $(in_hg) ]; then
     echo $(hg branch)
-  fi
 }
 
 function hg_get_id() {
-  if [ $(in_hg) ]; then
-    echo $(hg id)
-  fi
+    echo "$(hg id)"
 }
 
 
 
 function hg_prompt_info {
   if [ $(in_hg) ]; then
-    _DISPLAY="$(hg_get_branch_name):$(hg_get_id)"
+    _DISPLAY="$(hg_get_branch_name) $(hg_get_id)"
     echo "$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_HG_PROMPT_PREFIX\
 $ZSH_THEME_REPO_NAME_COLOR$_DISPLAY$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_HG_PROMPT_SUFFIX$ZSH_PROMPT_BASE_COLOR$(hg_dirty)$ZSH_PROMPT_BASE_COLOR"
     unset _DISPLAY
@@ -49,7 +45,6 @@ $ZSH_THEME_REPO_NAME_COLOR$_DISPLAY$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_HG_PROMPT_SU
 }
 
 function hg_dirty_choose {
-  if [ $(in_hg) ]; then
     hg status 2> /dev/null | command grep -Eq '^\s*[ACDIM!?L]'
     if [ $pipestatus[-1] -eq 0 ]; then
       # Grep exits with 0 when "One or more lines were selected", return "dirty".
@@ -58,7 +53,6 @@ function hg_dirty_choose {
       # Otherwise, no lines were found, or an error occurred. Return clean.
       echo $2
     fi
-  fi
 }
 
 function hg_dirty {
