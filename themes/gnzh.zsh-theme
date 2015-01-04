@@ -44,11 +44,15 @@ elif which rbenv &> /dev/null; then # detect Simple Ruby Version management
   rvm_ruby='%{$PR_RED%}‹$(rbenv version | sed -e "s/ (set.*$//")›%{$PR_NO_COLOR%}'
 fi
 local git_branch='$(git_prompt_info)%{$PR_NO_COLOR%}'
+local hg_branch='$(hg_prompt_info)%{$PR_NO_COLOR%}'
 
 #PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}$PR_PROMPT "
-PROMPT="╭─${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
+PROMPT="╭─${user_host} ${current_dir} ${rvm_ruby} ${git_branch} ${hg_branch}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$PR_YELLOW%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$PR_NO_COLOR%}"
+
+ZSH_THEME_HG_PROMPT_PREFIX="%{$PR_YELLOW%}‹"
+ZSH_THEME_HG_PROMPT_SUFFIX="› %{$PR_NO_COLOR%}"
