@@ -11,10 +11,11 @@ else
 fi
 
 # Get the host name (first 4 chars)
-HOST_PROMPT_="%{$fg_bold[green]%}$HOST ➜  %{$fg_bold[cyan]%}%c "
+HOST_PROMPT_="%{$fg_bold[green]%}$HOST %{$fg_bold[cyan]%}%c "
 GIT_PROMPT="%{$fg_bold[blue]%}\$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}"
 HG_PROMPT="%{$fg_bold[blue]%}\$(hg_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}"
-PROMPT="$HOST_PROMPT_$RUBY_PROMPT_$GIT_PROMPT_$HG_PROMPT"
+PROMPT="$HOST_PROMPT_$RUBY_PROMPT $GIT_PROMPT $HG_PROMPT
+➜ "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
